@@ -9,8 +9,12 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class Produto extends PanacheEntity {
 	
 	public String nome;
