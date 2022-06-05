@@ -1,4 +1,4 @@
-# code-with-quarkus Project
+# Quarkus Básico - CRUD completo
 
 Esse é um projeto básico de Quarkus onde eu utilizei o README para fazer anotações interessantes que podem me ajudar no futuro.
 
