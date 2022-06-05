@@ -9,8 +9,10 @@ http://localhost:8080/q/swagger-ui/
 
 ## Comandos úteis
 
-- Comando para rodar local:
+- Executar o projeto pelo cmd:
+
 mvn quarkus:dev
 
-- Docker: Baixar Imagem/Executar container Mysql
+- Baixar Imagem/Executar container Mysql:
+
 docker run -p 3306:3306 --name mysql-mariadb -e MYSQL_ROOT_PASSWORD=root -d mariadb

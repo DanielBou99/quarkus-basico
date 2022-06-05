@@ -21,15 +21,15 @@ import org.acme.dto.CadastroProdutoDTO;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 @Path("produtos")
-@Produces( MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ProdutoController {
-	
+
 	@GET
 	public List<Produto> buscarTodosProdutos() {
 		return Produto.listAll();
 	}
-	
+
 	@POST
 	@Transactional
 	public void cadastrarProduto(CadastroProdutoDTO dto) {
@@ -38,7 +38,7 @@ public class ProdutoController {
 		produto.setValor(dto.getValor());
 		produto.persist();
 	}
-	
+
 	@PUT
 	@Path("{id}")
 	@Transactional
@@ -53,17 +53,15 @@ public class ProdutoController {
 			throw new NotFoundException("ID não encontrado: " + id);
 		}
 	}
-	
+
 	@DELETE
 	@Path("{id}")
 	@Transactional
 	public void deletarProduto(@PathParam("id") Long id) {
 		Optional<Produto> produtoEncontrado = Produto.findByIdOptional(id);
-		if (produtoEncontrado.isPresent()) {
-			Produto.deleteById(id);
-		} else {
-			throw new NotFoundException("ID não encontrado: " + id);
-		}
+		produtoEncontrado.ifPresentOrElse(Produto::delete, () -> {
+			throw new NotFoundException();
+		});
 	}
 
 }
